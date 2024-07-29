@@ -20,11 +20,17 @@ public class Calc {
         double num1 = scanner.nextDouble();
 
         System.out.println("Введите знак операции: +, -, *, /");
+        // Не понял, как использовать .nextLine(), т.к. он пробрасывает в условие if и
+        // печатает System.out.println("Ошибка, этот знак не относится к операндам!\n");
+
+        // Юра, как ты показал в воскресенье про Double.parseDouble(scanner.nextLine())
+        // но нам нужно не double, а получить знак "+", "-", "*", "/".
+        // Поэтому .next(); отлично отрабатывает.
         String operationSign = scanner.next();
-        if (!operationSign.equals("+") || !operationSign.equals("-") ||
-            !operationSign.equals("*") || !operationSign.equals("/")) {
+        if (!operationSign.equals("+") && !operationSign.equals("-") &&
+            !operationSign.equals("*") && !operationSign.equals("/")) {
             System.out.println("Ошибка, этот знак не относится к операндам!\n");
-            //return; // В этом случае можно завершить выполнение программы.
+            //return; // В случае ошибки, можно завершить выполнение программы.
         }
 
         System.out.println("Введите второе число:");
