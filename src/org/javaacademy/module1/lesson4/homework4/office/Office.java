@@ -1,16 +1,5 @@
 package org.javaacademy.module1.lesson4.homework4.office;
 
-//Босс обладает именем. Умеет подгонять менеджера - "{Имя менеджера}" быстрее!
-//Менеджер обладает именем. Умеет кричать - "я ничего не успеваю, помогите!".
-//Секретарь умеет просить менеджера и босса успокоится, а охранника подождать:
-//"{Имя босса} не волнуйтесь, {имя менеджера} все успеет. {имя охранника} - подождите!"
-//Охранник обладает именем. Просит выдать ему аванс.
-//В офисе есть метод рабочий день:
-//--Босс начинает подгонять менеджера
-//--Менеджер кричит
-//--Охранник просит аванс
-//--Секретарша всех успокаивает, и просит подождать
-
 public class Office {
     String post;
     String name;
@@ -30,13 +19,19 @@ public class Office {
         this.voice = voice;
     }
 
-    void workingDay(Office boss, Office manager,
+    static void workingDay(Office boss, Office manager,
                            Office secretary, Office security) {
-        System.out.println("Начинается рабочий день:");
-        System.out.println(boss.getVoice());
-        System.out.println(manager.getVoice());
-        System.out.println(security.getVoice());
-        System.out.println(secretary.getVoice());
+        System.out.println("Начинается рабочий день:\n ------");
+        System.out.println(boss.getPost() + " - " + boss.getVoice());
+        System.out.println(manager.getPost() + " " + manager.getName() + " - " +
+                           manager.getVoice());
+        System.out.println(security.getPost() + " " + security.getName() + " - " +
+                           security.getVoice());
+        System.out.println(secretary.getPost() + " - " + secretary.getVoice());
+    }
+
+    public String getPost() {
+        return post;
     }
 
     public String getName() {
