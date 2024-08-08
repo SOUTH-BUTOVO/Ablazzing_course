@@ -12,8 +12,42 @@ package org.javaacademy.module1.lesson4.homework4.office;
 //--Секретарша всех успокаивает, и просит подождать
 
 public class Office {
-    String bossName;
-    String manager;
-    String secretary;
-    String security;
+    String post;
+    String name;
+    String voice;
+
+    public Office() {
+    }
+
+    public Office(String post, String voice) {
+        this.post = post;
+        this.voice = voice;
+    }
+
+    public Office(String post, String name, String voice) {
+        this.post = post;
+        this.name = name;
+        this.voice = voice;
+    }
+
+    void workingDay(Office boss, Office manager,
+                           Office secretary, Office security) {
+        System.out.println("Начинается рабочий день:");
+        System.out.println(boss.getVoice());
+        System.out.println(manager.getVoice());
+        System.out.println(security.getVoice());
+        System.out.println(secretary.getVoice());
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getVoice() {
+        return voice;
+    }
+
+    public void setVoice(String voice) {
+        this.voice = voice;
+    }
 }

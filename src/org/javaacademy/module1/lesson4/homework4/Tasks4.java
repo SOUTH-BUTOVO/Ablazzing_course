@@ -41,7 +41,7 @@ public class Tasks4 {
             int number = random.nextInt(1000);
             if (number == numberSearch) {
                 System.out.println("Число " + numberSearch +
-                    ", было найдено с " + i + "й попытки.");
+                    ", было найдено с " + (i + 1) + "й попытки.");
                 break;
             }
         }
