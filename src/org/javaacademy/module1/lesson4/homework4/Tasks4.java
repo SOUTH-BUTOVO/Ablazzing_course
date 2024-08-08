@@ -85,7 +85,7 @@ public class Tasks4 {
 
     }
 
-    static void stringBarbecue(String[] words, String strTask) {
+    private static void stringBarbecue(String[] words, String strTask) {
         //С помощью циклов и функции String.substring составить итоговый текст
         String strCycle = "";
         for (String word : words) {

@@ -1,12 +1,9 @@
 package org.javaacademy.module1.lesson4.homework4.office;
 
 public class Office {
-    String post;
-    String name;
-    String voice;
-
-    public Office() {
-    }
+    private String post;
+    private String name;
+    private String voice;
 
     public Office(String post, String voice) {
         this.post = post;
