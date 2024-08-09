@@ -1,5 +1,10 @@
 package org.javaacademy.module1.lesson2.homework2.task;
 
+import java.math.BigDecimal;
+
+import static java.math.BigDecimal.ZERO;
+import static java.math.BigDecimal.valueOf;
+
 public class Homework {
     public static void main(String[] args) {
 
@@ -41,6 +46,8 @@ public class Homework {
         // отрабатывает не корректно. Поэтому откатил назад и оставил задачу с double.
         hornsAndHoovesCompany();
         System.out.println("-----------------------------------------");
+
+        hornsAndHoovesCompany2();
     }
 
     private static void stringFamily(String name) {
@@ -163,5 +170,77 @@ public class Homework {
             // Прибыль после налогов: прибыль до налогов - налог.
         double profitAfterTax = profitBeforeTax - tax;
         System.out.println(profitAfterTax + " Прибыль после налогов");
+    }
+
+    private static void hornsAndHoovesCompany2() {
+        // price - стоимость, count - произведено кг., cost - себестоимость.
+        long countSausage = 2000;
+        BigDecimal priceSausage = valueOf(800);
+        BigDecimal priceHam = valueOf(350);
+        BigDecimal costHam = valueOf(275);
+        BigDecimal priceNeck = valueOf(500);
+        //BigDecimal costNeck = countNeck < 500 ? valueOf(311) : valueOf(299);
+
+        BigDecimal costSausage = countSausage < 1000 ? valueOf(412) :
+         countSausage >= 1000 && countSausage < 2000 ? valueOf(408) : valueOf(404);
+
+        long countHam = 8511;
+
+        long countNeck = 6988;
+
+        // Доход компании
+        // income - доход
+        BigDecimal totalIncomeSausage = priceSausage.multiply(valueOf(countSausage));
+        BigDecimal totalIncomeHam = priceHam.multiply(valueOf(countHam));
+        BigDecimal totalIncomeNeck = priceNeck.multiply(valueOf(countNeck));
+        BigDecimal totalIncome = totalIncomeSausage.add(totalIncomeHam).add(totalIncomeNeck);
+
+        // Расход компании
+        // outcome - расход
+        BigDecimal totalOutcomeSausage = costSausage.multiply(valueOf(countSausage));
+        BigDecimal totalOutcomeHam = costHam.multiply(valueOf(countHam));
+        BigDecimal totalOutcomeNeck = costNeck.multiply(valueOf(countNeck));
+        // Постоянные расходы компании
+        BigDecimal outcomeConstant = valueOf(1_000_000);
+        BigDecimal totalOutcome = totalOutcomeSausage.add(totalOutcomeHam)
+                                 .add(totalOutcomeNeck).add(outcomeConstant);
+
+        // Прибыль до налога
+        BigDecimal profitBeforeTax = totalIncome.subtract(totalOutcome);
+
+        // Налоги
+        BigDecimal taxRateBeforeLowLimit = new BigDecimal("0.08");
+        BigDecimal lowLimitTax = valueOf(1_000_000);
+        BigDecimal taxRateAfterLowLimit = new BigDecimal("0.1");
+        BigDecimal highLimitTax = valueOf(2_000_000);
+        BigDecimal taxRateAfterHighLimit = new BigDecimal("0.13");
+
+        // Итоговый налог
+        BigDecimal totalTax = ZERO;
+        // Расчёт для нижнего лимита
+        if (profitBeforeTax.compareTo(lowLimitTax) <= 0) {
+            BigDecimal taxBeforeLowLimit = taxRateBeforeLowLimit.multiply(profitBeforeTax);
+            totalTax = totalTax.add(taxBeforeLowLimit);
+        } else {
+            BigDecimal taxBeforeLowLimit = taxRateBeforeLowLimit.multiply(lowLimitTax);
+            totalTax = totalTax.add(taxBeforeLowLimit);
+        }
+
+        // Расчёт для среднего лимита и овер лимита
+        if (profitBeforeTax.compareTo(highLimitTax) < 0) {
+            BigDecimal taxAfterLowLimit = profitBeforeTax.subtract(lowLimitTax)
+                                                         .multiply(taxRateAfterLowLimit);
+            totalTax = totalTax.add(taxAfterLowLimit);
+        } else {
+            BigDecimal taxAfterLowLimit = highLimitTax.subtract(lowLimitTax)
+                                                      .multiply(taxRateAfterLowLimit);
+            BigDecimal taxAfterHighLimit = profitBeforeTax.subtract(highLimitTax)
+                                                          .multiply(taxRateAfterHighLimit);
+            totalTax = totalTax.add(taxAfterLowLimit).add(taxAfterHighLimit);
+        }
+        System.out.println("Налог составил: " + totalTax);
+
+        BigDecimal profitAfterTax = profitBeforeTax.subtract(totalTax);
+        System.out.println("Прибыль после налога: " + profitAfterTax);
     }
 }
