@@ -1,5 +1,7 @@
 package org.javaacademy.module1.lesson2.homework2.task;
 
+import org.javaacademy.module1.lesson2.homework2.oop_ex5.CalcFinancialResult;
+
 import java.math.BigDecimal;
 
 import static java.math.BigDecimal.ZERO;
@@ -48,6 +50,8 @@ public class Homework {
         System.out.println("-----------------------------------------");
 
         hornsAndHoovesCompany2();
+
+
     }
 
     private static void stringFamily(String name) {
@@ -174,19 +178,29 @@ public class Homework {
 
     private static void hornsAndHoovesCompany2() {
         // price - стоимость, count - произведено кг., cost - себестоимость.
-        long countSausage = 2000;
         BigDecimal priceSausage = valueOf(800);
-        BigDecimal priceHam = valueOf(350);
-        BigDecimal costHam = valueOf(275);
-        BigDecimal priceNeck = valueOf(500);
-        //BigDecimal costNeck = countNeck < 500 ? valueOf(311) : valueOf(299);
-
+        long countSausage = 2000;
         BigDecimal costSausage = countSausage < 1000 ? valueOf(412) :
          countSausage >= 1000 && countSausage < 2000 ? valueOf(408) : valueOf(404);
 
+        BigDecimal priceHam = valueOf(350);
         long countHam = 8511;
+        BigDecimal costHam = valueOf(275);
 
+        BigDecimal priceNeck = valueOf(500);
         long countNeck = 6988;
+        BigDecimal costNeck = countNeck < 500 ? valueOf(311) : valueOf(299);
+
+
+        CalcFinancialResult calcFinancialResult = new CalcFinancialResult
+                      ("800", "350", "500");
+        System.out.println("-------------------------");
+        System.out.println("Расчёт №1");
+        calcFinancialResult.calculateProfitTax(countSausage, countHam, countNeck);
+        System.out.println("-------------------------");
+        System.out.println("Расчёт №2");
+        calcFinancialResult.calculateProfitTax(1000, 1000, 1000);
+
 
         // Доход компании
         // income - доход
@@ -218,7 +232,7 @@ public class Homework {
         // Итоговый налог
         BigDecimal totalTax = ZERO;
         // Расчёт для нижнего лимита
-        if (profitBeforeTax.compareTo(lowLimitTax) <= 0) {
+        if (profitBeforeTax.compareTo(lowLimitTax) < 0) {
             BigDecimal taxBeforeLowLimit = taxRateBeforeLowLimit.multiply(profitBeforeTax);
             totalTax = totalTax.add(taxBeforeLowLimit);
         } else {
