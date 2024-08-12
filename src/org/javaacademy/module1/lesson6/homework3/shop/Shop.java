@@ -1,17 +1,34 @@
 package org.javaacademy.module1.lesson6.homework3.shop;
 
-/** Магазин */
+/**
+ * Магазин
+ */
 public class Shop {
-    private boolean isClearFloor; //Чистый пол
-    private boolean workersHasBadge; //Есть ли бейджики у сотрудников
-    private int countWorkers; //Количество работников в магазине
+    private final boolean isClearFloor; //Чистый пол
+    private final boolean workersHasBadge; //Есть ли бейджики у сотрудников
+    private final int countWorkers; //Количество работников в магазине
 
-    //1. Магазин мог создаваться во всех классах любых пакетов
-//2. Атрибуты магазина и покупателя соответствовали правилам инкапсуляции
-
-    private Shop(boolean isClearFloor, boolean workersHasBadge, int countWorkers) {
+    public Shop(boolean isClearFloor, boolean workersHasBadge, int countWorkers) {
         this.isClearFloor = isClearFloor;
         this.workersHasBadge = workersHasBadge;
         this.countWorkers = countWorkers;
+    }
+
+    protected boolean checkShop() {
+        int countTest = 0;
+        if (isClearFloor) {
+            countTest++;
+        }
+        if (workersHasBadge) {
+            countTest++;
+        }
+        if (countWorkers > 2) {
+            countTest++;
+        }
+        if (countTest >= 2) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

@@ -37,11 +37,11 @@ public class Tasks4 {
     private static void randomNum() {
         Random random = new Random(1);
         int numberSearch = 999;
-        for (int i = 0; i < 10000; i++) {
+        for (int i = 1; true; i++) {
             int number = random.nextInt(1000);
             if (number == numberSearch) {
                 System.out.println("Число " + numberSearch +
-                    ", было найдено с " + (i + 1) + "й попытки.");
+                             ", было найдено с " + (i) + "й попытки.");
                 break;
             }
         }

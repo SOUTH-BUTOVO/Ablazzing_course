@@ -1,45 +1,28 @@
 package org.javaacademy.module1.lesson4.homework4.office;
 
+import org.javaacademy.module1.lesson4.homework4.office.worker.Boss;
+import org.javaacademy.module1.lesson4.homework4.office.worker.Manager;
+import org.javaacademy.module1.lesson4.homework4.office.worker.Secretary;
+import org.javaacademy.module1.lesson4.homework4.office.worker.Security;
+
 public class Office {
-    private String post;
-    private String name;
-    private String voice;
+    private final Boss boss;
+    private final Manager manager;
+    private final Secretary secretary;
+    private final Security security;
 
-    public Office(String post, String voice) {
-        this.post = post;
-        this.voice = voice;
+    public Office(Boss boss, Manager manager, Secretary secretary, Security security) {
+        this.boss = boss;
+        this.manager = manager;
+        this.secretary = secretary;
+        this.security = security;
     }
 
-    public Office(String post, String name, String voice) {
-        this.post = post;
-        this.name = name;
-        this.voice = voice;
+    void workDay() {
+        boss.shoutManager(manager);
+        manager.shout();
+        security.giveMeHalfMoney();
+        secretary.keepCalm(boss, manager, security);
     }
 
-    static void workingDay(Office boss, Office manager,
-                           Office secretary, Office security) {
-        System.out.println("Начинается рабочий день:\n ------");
-        System.out.println(boss.getPost() + " - " + boss.getVoice());
-        System.out.println(manager.getPost() + " " + manager.getName() + " - " +
-                           manager.getVoice());
-        System.out.println(security.getPost() + " " + security.getName() + " - " +
-                           security.getVoice());
-        System.out.println(secretary.getPost() + " - " + secretary.getVoice());
-    }
-
-    public String getPost() {
-        return post;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getVoice() {
-        return voice;
-    }
-
-    public void setVoice(String voice) {
-        this.voice = voice;
-    }
 }
