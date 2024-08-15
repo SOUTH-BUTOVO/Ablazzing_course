@@ -25,4 +25,12 @@ package org.javaacademy.module1.lesson6.homework3.phonefabric;
 //ВНИМАНИЕ! Фабрики создают телефоны без создания экземпляра фабрики!
 
 public class Runner {
+    public static void main(String[] args) {
+        Samsong samsong = new Samsong();
+        samsong.foto();
+
+        Iphong iphong = new Iphong();
+        iphong.foto();
+        iphong.infoProcessor();
+    }
 }

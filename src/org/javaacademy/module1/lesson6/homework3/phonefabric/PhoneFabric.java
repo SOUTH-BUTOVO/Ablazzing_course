@@ -1,12 +1,15 @@
 package org.javaacademy.module1.lesson6.homework3.phonefabric;
 
-public abstract class PatternPhone {
+public abstract class PhoneFabric {
 
     void foto() {
-        System.out.println("сделано фото");
+        System.out.print("сделано фото");
     }
 
-    void info() {
+    void infoProcessor() {
         System.out.println("mHz");
     }
+
+
+
 }
