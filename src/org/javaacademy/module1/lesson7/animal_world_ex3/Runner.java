@@ -20,8 +20,8 @@ public class Runner {
         // Собака обладает хозяином
         // Рыба обладает макс количеством икры.
 
-        Dog dog = new Dog("Сергей");
         Rat rat = new Rat(100);
+        Dog dog = new Dog("Сергей");
         Carp carp = new Carp(1_000_000, "Gold");
         Salmon salmon = new Salmon(10_000_000, "Black");
 

@@ -17,4 +17,12 @@ public class Dog extends Mammal {
         System.out.print("Собака ");
         super.breathe();
     }
+
+    public String getOwnerName() {
+        return ownerName;
+    }
+
+    public void setOwnerName(String ownerName) {
+        this.ownerName = ownerName;
+    }
 }
