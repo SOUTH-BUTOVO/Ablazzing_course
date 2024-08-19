@@ -16,4 +16,22 @@ public final class City {
         return "Имя города: " + nameCity +
                ", все дома: " + Arrays.toString(arrHouse);
     }
+
+    public String getNameCity() {
+        return nameCity;
+    }
+
+    public House[] getArrHouse() {
+        try {
+            House[] housesCopy = new House[arrHouse.length];
+            for (int i = 0; i < arrHouse.length; i++) {
+                House house = arrHouse[i];
+                House houseCopy = (House) house.clone();
+                housesCopy[i] = houseCopy;
+            }
+            return housesCopy;
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

@@ -1,12 +1,17 @@
 package org.javaacademy.module1.lesson6.homework3.city;
 
-public class House {
+public class House implements Cloneable {
     private String streetName;
     private int houseNumber;
 
     public House(String streetName, int houseNumber) {
         this.streetName = streetName;
         this.houseNumber = houseNumber;
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 
     public String getStreetName() {

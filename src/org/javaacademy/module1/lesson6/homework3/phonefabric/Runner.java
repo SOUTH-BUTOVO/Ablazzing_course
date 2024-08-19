@@ -1,36 +1,16 @@
 package org.javaacademy.module1.lesson6.homework3.phonefabric;
 
-//Задача: Фабрика телефонов
-//Организовать фабрику создания двух телефонов
-//
-//Создать комплектующие телефона
-//Камера: умеет фотографировать. Свойство - количество мега пикселей.
-//Процессор: свойство - количество вычислений в секунду (mhz)
-//Корпус: свойства - размеры - ширина, высота, длина
-//
-//Создать телефон Samsung, который состоит из процессора, камеры, корпуса.
-//Умеет фотографировать используя камеру (печать в консоль - "сделано фото")
-//
-//Создать телефон Iphone, который состоит из двух процессоров, камеры, корпуса.
-//Умеет фотографировать используя камеру (печать в консоль - "сделано фото").
-//Умеет печатать на экран информацию о процессорах.
-//
-//Создать фабрику Iphone, которая:
-//Создает iphone и заполняет его двумя процессорами (1000 Mhz), 8 мегапиксельной камерой,
-// и корпусом 60х200х10
-//
-//Создать фабрику Samsung, которая:
-//Создает samsung и заполняет его процессором (1500 Mhz), 16 мегапиксельной камерой,
-// и корпусом 60х200х15
-//ВНИМАНИЕ! Фабрики создают телефоны без создания экземпляра фабрики!
+import org.javaacademy.module1.lesson6.homework3.phonefabric.factory.IphoneFactory;
+import org.javaacademy.module1.lesson6.homework3.phonefabric.factory.SamsungFactory;
+import org.javaacademy.module1.lesson6.homework3.phonefabric.phone.Iphone;
+import org.javaacademy.module1.lesson6.homework3.phonefabric.phone.Samsung;
 
 public class Runner {
     public static void main(String[] args) {
-        Samsong samsong = new Samsong();
-        samsong.foto();
+        Iphone iphone = IphoneFactory.createPhone();
+        Samsung samsung = SamsungFactory.createPhone();
 
-        Iphong iphong = new Iphong();
-        iphong.foto();
-        iphong.infoProcessor();
+        iphone.printInfo();
+        samsung.printInfo();
     }
 }

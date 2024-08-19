@@ -14,21 +14,15 @@ public class Shop {
         this.countWorkers = countWorkers;
     }
 
-    protected boolean checkShop() {
-        int countTest = 0;
-        if (isClearFloor) {
-            countTest++;
-        }
-        if (workersHasBadge) {
-            countTest++;
-        }
-        if (countWorkers > 2) {
-            countTest++;
-        }
-        if (countTest >= 2) {
-            return true;
-        } else {
-            return false;
-        }
+    public boolean isClearFloor() {
+        return isClearFloor;
+    }
+
+    public boolean isWorkersHasBadge() {
+        return workersHasBadge;
+    }
+
+    public int getCountWorkers() {
+        return countWorkers;
     }
 }

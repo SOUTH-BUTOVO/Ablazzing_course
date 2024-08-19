@@ -22,8 +22,9 @@ public class Runner {
         House house2 = new House("Цветочная", 18);
         City city = new City("Москва", new House[]{house1, house2});
 
+        House house = city.getArrHouse()[0];
         house1.setStreetName("Ленина");
-        System.out.println(house1.getStreetName());
+        System.out.println(city);
 
         System.out.println(city);
     }
