@@ -1,21 +1,33 @@
 package org.javaacademy.module1.lesson8.homework4.ex1_car_wash;
 
-//Создать легковую машину (атрибуты: чистая/грязная, размеры(ширина,высота,длина), наличие круиз контроля)
-//Создать автобус (атрибуты: чистый/грязный, размеры(ширина,высота,длина), макс количество пассажиров)
-//Создать автомойку
-//Автомойка умеет мыть машину. Делает машину чистой. Возвращает стоимость помывки.
-//Автомойка умеет мыть машины. Делает машины чистыми. Возвращает стоимость помывки за все машины.
-//Категории автомобилей:
-//если длина > 6 или высота > 2.5 метра или ширина > 2, то машина считается крупной
-//иначе считается маломерной.
-//тариф 4000 - для крупных авто.
-//тариф 2000 - для маломерных.
-//В автомойку были отправлены грязные машины мэрии: 4 легковых(длина высота ширина) (5х2х1.8),
-//5 автобусов(12х3х2.3)
-//Посчитать и вывести: сколько мэрия заплатит денег за мойку всех машин.
+import org.javaacademy.module1.lesson8.homework4.ex1_car_wash.car.Bus;
+import org.javaacademy.module1.lesson8.homework4.ex1_car_wash.car.PassengerCar;
+import org.javaacademy.module1.lesson8.homework4.ex1_car_wash.car.Transport;
+
+import java.util.Arrays;
 
 public class Runner {
     public static void main(String[] args) {
+        PassengerCar passengerCar1 = new PassengerCar(false, 5, 2,
+                                                          1.8, true);
+        PassengerCar passengerCar2 = new PassengerCar(false, 5, 2,
+                                                          1.8, false);
+        PassengerCar passengerCar3 = new PassengerCar(false, 5, 2,
+                                                          1.8, true);
+        PassengerCar passengerCar4 = new PassengerCar(true, 5, 2,
+                                                          1.8, false);
 
+        Bus bus1 = new Bus(false, 12, 3, 2.3, 20);
+        Bus bus2 = new Bus(false, 12, 3, 2.3, 40);
+        Bus bus3 = new Bus(false, 12, 3, 2.3, 60);
+        Bus bus4 = new Bus(false, 12, 3, 2.3, 60);
+        Bus bus5 = new Bus(true, 12, 3, 2.3, 120);
+
+        Transport[] transports = {passengerCar1, passengerCar2, passengerCar3, passengerCar4,
+                                  bus1, bus2, bus3, bus4, bus5};
+
+        // 26_000 руб. если весь транспорт грязный.
+        System.out.println("Итоговая стоимость мойки: " + CarWash.wash(transports) + " рублей.");
+        System.out.println(Arrays.toString(transports));
     }
 }
