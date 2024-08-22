@@ -9,10 +9,10 @@ public class Duck implements Flyable {
 
     @Override
     public void fly() throws FlyException {
-        if (!isInjured) {
-            throw new FlyException("ранена");
+        if (isInjured) {
+            throw new FlyException("Уточка ранена");
         }
-        System.out.println("Уточка ");
+        System.out.print("Уточка ");
         Flyable.super.fly();
     }
 }

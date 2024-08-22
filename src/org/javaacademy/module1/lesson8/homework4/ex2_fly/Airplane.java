@@ -10,13 +10,9 @@ public class Airplane implements Flyable {
     @Override
     public void fly() throws FlyException {
         if (countPassengers < 0) {
-            throw new FlyException("количество пассажиров: " + getCountPassengers());
+            throw new FlyException("пассажиров в самолете меньше 0");
         }
-        System.out.println("Самолёт ");
+        System.out.print("Самолёт ");
         Flyable.super.fly();
-    }
-
-    public int getCountPassengers() {
-        return countPassengers;
     }
 }
