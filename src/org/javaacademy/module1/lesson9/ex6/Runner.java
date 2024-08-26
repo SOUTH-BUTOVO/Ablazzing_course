@@ -2,10 +2,10 @@ package org.javaacademy.module1.lesson9.ex6;
 
 public class Runner {
     public static void main(String[] args) {
-        Animal tiger = new Animal() {
+        Animal tiger = new Animal("Тигр") {
             @Override
             public void run(Animal animal) {
-                System.out.println("Тигр бежит за " + animal.toString());
+                System.out.println("Тигр бежит за " + animal.name);
             }
 
             @Override
@@ -24,10 +24,10 @@ public class Runner {
             }
         };
 
-        Animal dog = new Animal() {
+        Animal dog = new Animal("Собака") {
             @Override
             public void run(Animal animal) {
-                System.out.println("Собака бежит за " + animal.toString());
+                System.out.println("Собака бежит за " + animal.name);
             }
 
             @Override
@@ -49,5 +49,6 @@ public class Runner {
         dog.sleep();
         dog.sound();
         dog.run(tiger);
+        tiger.run(tiger);
     }
 }
