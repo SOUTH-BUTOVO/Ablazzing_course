@@ -9,10 +9,11 @@ public class Runner {
     public static void main(String[] args) throws IOException {
         File fileTrack = new File("P:\\iT6ka\\JAVA\\PROJECTS\\Ablazzing_project\\my_data.txt");
         Scanner scanner = new Scanner(fileTrack);
+        String res = "";
         while (scanner.hasNext()) {
-            String string = scanner.nextLine();
-            System.out.println(string);
+            res += scanner.nextLine() + "\n";
         }
+        System.out.println(res);
         scanner.close();
     }
 
