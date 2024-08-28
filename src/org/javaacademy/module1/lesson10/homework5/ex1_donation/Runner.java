@@ -1,11 +1,8 @@
 package org.javaacademy.module1.lesson10.homework5.ex1_donation;
 
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Arrays;
-import java.util.Scanner;
 
 //Донаты со всего мира
 //Одному блогеру присылают пожертвования(донаты) за его ролики
@@ -29,52 +26,39 @@ import java.util.Scanner;
 public class Runner {
     public static void main(String[] args) throws IOException {
         //String separator = File.separator;
-        //File myDonat = new File("resources" + separator + "donation.csv");
-        // Без сепаратора то же работает, можно указать:
-        // File myDonat = new File("resources/donation.csv");
+        //File pathFileMyDonat = new File("resources" + separator + "donation.csv");
+        // Без сепаратора то же работает, но зависит от ОС:
+        // File pathFileMyDonat = new File("resources/donation.csv");
 
-        Path pathMyDonat = Path.of("resources/donation.csv");
+        Path pathFileMyDonat = Path.of("resources/donation.csv");
         String[] countries = {"Россия", "Франция", "Китай", "Япония", "Турция"};
-        String listDonats = Files.readString(pathMyDonat); // Создаём переменную String, список всех донатов
-        String listCountries = "";
-        int countLines = 1; // Считаем кол-во строк в списке донатов
+        double[] totalSum = new double[5];
+        // Создаём переменную String, список всех донатов и меняем ',' на '.'
+        String listDonat = Files.readString(pathFileMyDonat).replaceAll(",", ".");
+        String[] arrDonat = listDonat.split("\n"); // Создаём массив донатов
+        int indexStart = 0;
 
-        String[] lines = listDonats.split("\n");
-        System.out.println(Arrays.toString(lines));
-        int count = 0;
-        for (String line : lines) {
-            count++;
-        }
-        System.out.println(lines.length);
-        System.out.println(count);
-
-        try (Scanner scanner = new Scanner(listDonats)) {
-            while (scanner.hasNextLine()) {
-                String line = scanner.nextLine();
-                if (line.contains("d")) {
-                    continue;
-                } else {
-                    listCountries += line + "\n";
-                    countLines++;
+        for (int i = 1; i < arrDonat.length; i++) {
+            indexStart = arrDonat[i].indexOf(";") + 1;
+            try {
+                // Парсим строку в Double, если не получается выбрасываем исключение
+                Double.parseDouble(arrDonat[i].substring(indexStart));
+                for (int j = 0; j < countries.length; j++) {
+                    if (arrDonat[i].contains(countries[j])) {
+                        totalSum[j] += Double.parseDouble(arrDonat[i].substring(indexStart));
+                    }
                 }
+                // Исключение: строки  6-"Китай;159,58d", 206-"Турция;42!5,15" и 973-"Россия;229,66s"
+            } catch (NumberFormatException e) {
+                // !!! Юра, я не доконца понял, почему тут одна строка печатается не правильно,
+                // Вместо (Китай;159,58d), печатается (Франция;75T1.99), возможно из-за символа d,
+                // но можно это и не печатать.
+                //System.out.println(arrDonat[i] + " - Не корректная строка");
             }
-//            System.out.print(listCountries);
-//            System.out.println(countLines);
-
-
-            String[] countryDonat = {};
-            String[] sumDonat = {};
-            for (int i = 0; i < countLines; i++) {
-
-            }
-            //System.out.println(listDonats);
-
-            String newStr = "";
-            int countryIndex = listDonats.indexOf(";");
-            for (int i = 0; i < countLines; i++) {
-                newStr += listDonats.substring(0, countryIndex) + "\n";
-            }
-            //System.out.print(newStr);
+        }
+        // Распечатываем страны и сумму доната из этой страны
+        for (int i = 0; i < countries.length; i++) {
+            System.out.println(countries[i] + " - " + totalSum[i]);
         }
     }
 }
