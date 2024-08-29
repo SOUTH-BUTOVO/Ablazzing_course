@@ -28,5 +28,19 @@ package org.javaacademy.module1.lesson10.homework5.ex2_spy;
 //4. Проверить наличие логов в comp.log
 // (файл должен быть внутри репозитория и отправлен в удаленное репо)
 
+import java.io.IOException;
+
 public class Runner {
+    public static void main(String[] args) throws IOException {
+        User user = new User("Сергей");
+        Computer computer = new Computer(user);
+        ComputerSpy computerSpy = new ComputerSpy(user);
+
+        computer.entryUser(user);
+
+        computerSpy.entryUserSpy(computer);
+        computerSpy.prtMessageSpy(computer);
+        computerSpy.exitUserSpy(computer);
+
+    }
 }

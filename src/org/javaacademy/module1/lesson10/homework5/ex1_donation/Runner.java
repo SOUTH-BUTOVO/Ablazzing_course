@@ -1,6 +1,7 @@
 package org.javaacademy.module1.lesson10.homework5.ex1_donation;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
@@ -32,7 +33,7 @@ public class Runner {
 
         Path pathFileMyDonat = Path.of("resources/donation.csv");
         String[] countries = {"Россия", "Франция", "Китай", "Япония", "Турция"};
-        double[] totalSum = new double[5];
+        double[] totalSum = new double[countries.length];
         // Создаём переменную String, список всех донатов и меняем ',' на '.'
         String listDonat = Files.readString(pathFileMyDonat).replaceAll(",", ".");
         String[] arrDonat = listDonat.split("\n"); // Создаём массив донатов
@@ -41,24 +42,21 @@ public class Runner {
         for (int i = 1; i < arrDonat.length; i++) {
             indexStart = arrDonat[i].indexOf(";") + 1;
             try {
-                // Парсим строку в Double, если не получается выбрасываем исключение
-                Double.parseDouble(arrDonat[i].substring(indexStart));
+                // Парсим строку в BigDecimal, если не получается выбрасываем исключение
+                BigDecimal bigDecimal = new BigDecimal(arrDonat[i].substring(indexStart));
                 for (int j = 0; j < countries.length; j++) {
                     if (arrDonat[i].contains(countries[j])) {
                         totalSum[j] += Double.parseDouble(arrDonat[i].substring(indexStart));
                     }
                 }
-                // Исключение: строки  6-"Китай;159,58d", 206-"Турция;42!5,15" и 973-"Россия;229,66s"
+                // Некорректные строки: "Китай;159,58d"/"Турция;42!5,15"/Франция;75T1.99/"Россия;229,66s"
             } catch (NumberFormatException e) {
-                // !!! Юра, я не доконца понял, почему тут одна строка печатается не правильно,
-                // Вместо (Китай;159,58d), печатается (Франция;75T1.99), возможно из-за символа d,
-                // но можно это и не печатать.
-                //System.out.println(arrDonat[i] + " - Не корректная строка");
+                System.out.println(arrDonat[i] + " - Не корректная строка");
             }
         }
         // Распечатываем страны и сумму доната из этой страны
         for (int i = 0; i < countries.length; i++) {
-            System.out.println(countries[i] + " - " + totalSum[i]);
+            System.out.printf("%s - %.2f%n", countries[i], totalSum[i]);
         }
     }
 }

@@ -7,25 +7,13 @@ public class Runner {
         Airplane airplane1 = new Airplane(10);
         Airplane airplane2 = new Airplane(-1);
 
-        try {
-            duck1.fly();
-        } catch (Exception e) {
-            System.err.println(e.getMessage());
-        }
-        try {
-            duck2.fly();
-        } catch (Exception e) {
-            System.err.println(e.getMessage());
-        }
-        try {
-            airplane1.fly();
-        } catch (Exception e) {
-            System.err.println("Ошибка: " + e.getMessage());
-        }
-        try {
-            airplane2.fly();
-        } catch (Exception e) {
-            System.err.println("Ошибка: " + e.getMessage());
+        //Flyable[] flyables = {duck1, duck2, airplane1, airplane2};
+        for (Flyable flyable : new Flyable[]{duck1, duck2, airplane1, airplane2}) {
+            try {
+                flyable.fly();
+            } catch (Exception e) {
+                System.err.println("Ошибка: " + e.getMessage());
+            }
         }
     }
 }
